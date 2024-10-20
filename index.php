@@ -35,7 +35,7 @@
     <!-- Main Content -->
     <div class="container">
         <h1 style="color: white; font-size:100px">Welcome to EventNest</h1>
-        <a href="../uts_lec/auth/login.php" class="btn btn-primary">Enter here</a>
+        <a href="../WebPro_Lec/auth/login.php" class="btn btn-primary">Enter here</a>
     </div>
 </body>
 </html>
