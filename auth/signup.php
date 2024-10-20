@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            // Ganti dengan $conn
             $stmt = $conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $username, $email, $hashedPassword, $role);
             if ($stmt->execute()) {

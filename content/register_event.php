@@ -23,7 +23,6 @@ if (isset($_GET['event_id'])) {
     $user_id = $_SESSION['user_id'];
     $event_id = $_GET['event_id'];
 
-    // Check if the user is already registered for the event
     $checkQuery = "SELECT * FROM event_registrations WHERE user_id = ? AND event_id = ?";
     $stmt = $conn->prepare($checkQuery);
     $stmt->bind_param("ii", $user_id, $event_id);
@@ -33,7 +32,6 @@ if (isset($_GET['event_id'])) {
     if ($result->num_rows > 0) {
         echo "You are already registered for this event.";
     } else {
-        // Register the user for the event
         $insertQuery = "INSERT INTO event_registrations (user_id, event_id) VALUES (?, ?)";
         $stmtInsert = $conn->prepare($insertQuery);
         $stmtInsert->bind_param("ii", $user_id, $event_id);
@@ -71,10 +69,8 @@ if (isset($_GET['event_id'])) {
                             <h5 class="card-title"><?php echo htmlspecialchars($event['name']); ?></h5>
                             <p class="card-text"><?php echo htmlspecialchars($event['description']); ?></p>
                             <p class="card-text"><small class="text-muted"><?php echo htmlspecialchars($event['date']); ?></small></p>
-                            <p class="card-text"><small class="text-muted">Location: <?php echo htmlspecialchars($event['lokasi']); ?></small></p> <!-- Menampilkan lokasi event -->
-                            <!--<a href="cancel_registration.php?event_id=<?php echo $event['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this registration?');">Cancel Registration</a>-->
+                            <p class="card-text"><small class="text-muted">Location: <?php echo htmlspecialchars($event['lokasi']); ?></small></p>
                             <a href="../content/cancel_registration.php?event_id=<?php echo $event['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this registration?');">Cancel Registration</a>
-
                         </div>
                     </div>
                 </div>

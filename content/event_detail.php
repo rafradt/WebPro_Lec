@@ -8,13 +8,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     exit;
 }
 
-require '../config.php'; // Database connection
+require '../config.php'; 
 
-// Fetch event details based on the event ID
+
 if (isset($_GET['id'])) {
     $event_id = $_GET['id'];
 
-    // Prepare the query to get event details
     $query = "SELECT id, name, image, description, date, lokasi FROM events WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $event_id);
@@ -33,7 +32,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Check if the user is registered for this event
+
 $user_id = $_SESSION['user_id'];
 $registered = false;
 
@@ -44,7 +43,7 @@ $checkStmt->execute();
 $checkResult = $checkStmt->get_result();
 
 if ($checkResult->num_rows > 0) {
-    $registered = true; // User is registered
+    $registered = true; 
 }
 $checkStmt->close();
 ?>
@@ -56,34 +55,9 @@ $checkStmt->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($event['name']); ?> - Event Detail</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .wrapper {
-            max-width: 800px; /* Mengatur lebar maksimum */
-            margin: 20px auto; /* Mengatur posisi tengah */
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px; /* Menambahkan padding untuk estetika */
-        }
-    </style>
+    <link rel="stylesheet" href="../index.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">EventNest</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <span class="nav-link">Hello, <?php echo htmlspecialchars($_SESSION['username']); ?>!</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-danger text-white" href="logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div class="container mt-5">
         <div class="wrapper">
             <h2><?php echo htmlspecialchars($event['name']); ?></h2>

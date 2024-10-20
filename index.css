@@ -73,6 +73,7 @@
   margin-bottom: 20px;
   position: relative;
 }
+
 .profile-circle {
   width: 40px;
   height: 40px;
@@ -131,4 +132,20 @@
 
 .table-container {
   margin-top: 20px;
+}
+
+/*user dashboard*/
+.card-img-top {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }

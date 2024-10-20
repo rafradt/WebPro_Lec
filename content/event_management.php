@@ -9,7 +9,7 @@
         exit;
     }
 
-    $limit = 10; // Jumlah event per halaman
+    $limit = 10;
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $offset = ($page - 1) * $limit;
 
@@ -36,7 +36,7 @@
         $description = $_POST['description'];
         $duration = $_POST['duration'];
         $location =$_POST['location'];
-        $status = isset($_POST['status']) ? $_POST['status'] : 'open'; // Default ke "open" jika tidak terisi
+        $status = isset($_POST['status']) ? $_POST['status'] : 'open'; 
         $max_quantity = $_POST['max_quantity'];
         $created_at = date('Y-m-d H:i:s');
         
@@ -126,7 +126,7 @@
     <div class="content"> 
         <h2>Event Management</h2>
         <button class="btn btn-primary" id="openModalButton">New</button>
-        <!-- tambah event -->
+        <!-- buat nambah event -->
         <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="AddEventModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -163,7 +163,7 @@
                 </div>
             </div>
         </div>
-        <!-- Edit Event -->
+        <!-- buat edit event -->
         <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -181,7 +181,7 @@
                                 <input type="date" name="date" id="editDate" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <textarea name="description" id="editDescription" placeholder="Deskripsi" class="form-control" required></textarea>
+                                <textarea name="description" id="editDescription" placeholder="Description" class="form-control" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <input type="text" name="duration" id="editDuration" placeholder="Durasi" class="form-control">
@@ -240,7 +240,7 @@
                         <td class="event-date"><?= htmlspecialchars($row['date']); ?></td>
                         <td class="event-description"><?= htmlspecialchars($row['description']); ?></td>
                         <td class="event-duration"><?= htmlspecialchars($row['duration']); ?></td>
-                        <td class="event-location"><?= htmlspecialchars($row['lokasi']); ?></td> <!-- Remove or update this line -->
+                        <td class="event-location"><?= htmlspecialchars($row['lokasi']); ?></td>
                         <td class="event-status"><?= htmlspecialchars($row['status']); ?></td>
                         <td class="event-max-quantity"><?= htmlspecialchars($row['max_quantity']); ?></td>
                         <td>
@@ -253,7 +253,6 @@
                 <?php endwhile; ?>
             </tbody>
         </table> 
-        <!-- Pagination -->
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>

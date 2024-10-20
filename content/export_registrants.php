@@ -37,7 +37,7 @@ if (isset($_GET['event_id'])) {
     header('Content-Disposition: attachment; filename="' . $event_name . '.csv"');
 
     $output = fopen('php://output', 'w');
-    fputcsv($output, ['Username', 'Email']); // Header row
+    fputcsv($output, ['Username', 'Email']);
 
     while ($row = $result->fetch_assoc()) {
         fputcsv($output, [$row['username'], $row['email']]);

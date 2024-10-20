@@ -89,7 +89,7 @@ if (isset($_GET['delete_id'])) {
                                 <td><?php echo htmlspecialchars($row['email']); ?></td>
                                 <td><?php echo htmlspecialchars($row['registered_events'] ?: 'No events'); ?></td>
                                 <td>
-                                    <a href="?delete_id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                                    <a href="?delete_id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this registration?');">Delete</a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

@@ -16,10 +16,9 @@ if (isset($_GET['event_id'])) {
     $stmt->bind_param("ii", $user_id, $event_id);
 
     if ($stmt->execute()) {
-        // Cek keberhasilan eksekusi
         header('Location: ../dashboard/user_dashboard.php?message=Cancellation successful');
     } else {
-        echo "Error: " . $stmt->error; // Tampilkan error jika ada
+        echo "Error: " . $stmt->error;
     }    
 
     $stmt->close();

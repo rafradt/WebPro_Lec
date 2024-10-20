@@ -52,28 +52,41 @@ foreach ($availableEvents as $event) {
     <title>User Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="../index.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">EventNest</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <span class="nav-link">Hello, <?php echo htmlspecialchars($_SESSION['username']); ?>!</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-danger text-white" href="../auth/logout.php">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-danger text-white" href="../content/register_event.php">Registered</a>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">EventNest</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item position-relative">
+                    <div class="nav-link d-flex align-items-center" id="profileCircle" style="cursor: pointer;">
+                        <div class="profile-circle">
+                            <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end position-absolute" id="profileDropdown" style="display: none; top: 100%; right: 0;">
+                        <li>
+                            <a class="dropdown-item" href="../content/profile.php">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../auth/logout.php">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container-swipper mt-5">
+    <div class="container mt-5">
         <h2>Events This Month</h2>
         <!-- Swiper -->
         <div class="swiper">
@@ -98,8 +111,6 @@ foreach ($availableEvents as $event) {
                     <p>No events available this month.</p>
                 <?php endif; ?>
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
         </div>
     </div>
 
@@ -160,6 +171,18 @@ foreach ($availableEvents as $event) {
                     console.error('There was a problem with the fetch operation:', error);
                 });
             }    
+        document.getElementById('profileCircle').addEventListener('click', function () {
+            var dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
+        });
+
+        document.addEventListener('click', function (event) {
+            var profileCircle = document.getElementById('profileCircle');
+            var dropdown = document.getElementById('profileDropdown');
+            if (!profileCircle.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
 
         var swiper = new Swiper('.swiper', {
             slidesPerView: 1,
