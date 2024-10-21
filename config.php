@@ -1,5 +1,5 @@
 <?php
-$servername = "sql208.bytecluster.com"; 
+$servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
 $dbname = "event_management"; 
