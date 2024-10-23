@@ -53,36 +53,39 @@ foreach ($availableEvents as $event) {
     <link rel="stylesheet" href="../index.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">EventNest</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item position-relative">
-                    <div class="nav-link d-flex align-items-center" id="profileCircle" style="cursor: pointer;">
-                        <div class="profile-circle">
-                            <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard/user_dashboard.php">EventNest</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../content/register_event.php" class="nav-link">Registered Event </a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <div class="nav-link d-flex align-items-center" id="profileCircle" style="cursor: pointer;">
+                            <div class="profile-circle">
+                                <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
+                            </div>
                         </div>
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-end position-absolute" id="profileDropdown" style="display: none; top: 100%; right: 0;">
-                        <li>
-                            <a class="dropdown-item" href="../content/profile.php">Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="../auth/logout.php">Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" id="profileDropdown" style="display: none; top: 100%; right: 0;">
+                            <li>
+                                <a class="dropdown-item" href="../content/profile.php">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../auth/logout.php">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <div class="container mt-5">
         <h2>Events This Month</h2>

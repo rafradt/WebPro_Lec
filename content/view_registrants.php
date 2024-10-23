@@ -58,7 +58,7 @@ if (isset($_GET['event_id'])) {
             <a class="nav-link" href="../auth/logout.php">Logout</a>
         </div>
     </div>
-    <div class="container">
+    <div class="content">
         <h1>List of Registrants</h1>
         <table class="table table-striped">
             <thead>

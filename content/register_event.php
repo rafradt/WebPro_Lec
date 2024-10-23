@@ -51,17 +51,64 @@ if (isset($_GET['event_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registered Events</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .no-events {
+            text-align: center;
+            color: #6c757d;
+        }
+    </style>
 </head>
 <body>
-    <h2>Registered Events</h2> 
-    <div class="row">
-        <?php if (count($registeredEvents) > 0): ?>
-            <?php foreach ($registeredEvents as $event): ?>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <?php
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../dashboard/user_dashboard.php">EventNest</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../content/register_event.php" class="nav-link">Registered Event </a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <div class="nav-link d-flex align-items-center" id="profileCircle" style="cursor: pointer;">
+                            <div class="profile-circle">
+                                <?php echo strtoupper(substr($_SESSION['username'], 0, 1)); ?>
+                            </div>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" id="profileDropdown" style="display: none; top: 100%; right: 0;">
+                            <li>
+                                <a class="dropdown-item" href="../content/profile.php">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="../auth/logout.php">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="containermt-5">
+
+        <h2 class="mb-4">Registered Events</h2> 
+        <div class="row">
+            <?php if (count($registeredEvents) > 0): ?>
+                <?php foreach ($registeredEvents as $event): ?>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <?php
                         $imagePath = "../assets/" . htmlspecialchars($event['image']);
                         echo "<img src='$imagePath' class='card-img-top' alt='" . htmlspecialchars($event['name']) . "'>";
                         ?>
@@ -74,10 +121,12 @@ if (isset($_GET['event_id'])) {
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No registered events found.</p>
-        <?php endif; ?>
+                <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="no-events">You haven't registered for any events yet.</p>
+                    <?php endif; ?>
+                </div>
     </div>
 </body>
 </html>
+

@@ -200,7 +200,7 @@
                                 <input type="number" name="max_quantity" id="editMaxQuantity" placeholder="Jumlah Maksimum" class="form-control" required>
                             </div>
                             <button type="submit" name="edit_event" class="btn btn-primary">Update Event</button>
-                            <button type="submit" name="delete_event" class="btn btn-danger">Hapus</button>
+                            <button type="submit" name="delete_event" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus event ini?')">Hapus</button>
                         </form>
                     </div>
                 </div>
