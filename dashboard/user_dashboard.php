@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     exit;
 }
 
-// Database connection
+
 require '../config.php';
 
 $queryAvailable = "SELECT id, name, image, description, date, status
@@ -22,20 +22,18 @@ $resultAvailable = $stmtAvailable->get_result();
 $availableEvents = $resultAvailable->fetch_all(MYSQLI_ASSOC);
 $stmtAvailable->close();
 
-// Inisialisasi array untuk event dalam bulan sekarang dan upcoming events
 $eventsThisMonth = [];
 $upcomingEvents = [];
 $currentDate = strtotime(date("Y-m-d"));
 
-// Mendapatkan bulan saat ini
+
 $currentMonth = date("m");
 
-// Memisahkan event berdasarkan bulan dan status
+
 foreach ($availableEvents as $event) {
     $eventDate = strtotime($event['date']);
     $eventMonth = date('m', $eventDate);
     
-    // Memeriksa apakah bulan event sama dengan bulan saat ini dan statusnya "open"
     if ($eventMonth == $currentMonth && $event['status'] === 'open') {
         $eventsThisMonth[] = $event;
     } else {
